@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>body{margin:0}</style>
+<title>Luma Society Social Proposal</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;600&display=swap">
+<style>
+/* One light reading column for an iPad across a table: questions lead, options follow as starting points. Light only, by choice. */
+:root {
+  --bg: #fcfbf8;
+  --surface: #f3f0ea;
+  --card: #ffffff;
+  --ink: #26231e;
+  --ink-2: #5f5a51;
+  --line: rgba(38, 35, 30, 0.12);
+  --accent: #8a5a12;
+  --accent-soft: rgba(138, 90, 18, 0.07);
+  --shadow-raised: 0 1px 3px rgba(38, 35, 30, 0.10);
+
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --text-sm: 13px; --text-base: 16px; --text-lg: 20px; --text-xl: 25px; --text-2xl: 32px;
+  --g1: 8px; --g2: 13px; --g3: 21px; --g4: 34px; --g5: 55px;
+  --pad-card: 24px; --radius-md: 8px; --radius-lg: 12px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--text-base); line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 980px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: var(--g4) var(--g5);
+  display: flex; flex-direction: column; gap: var(--g5);
+}
+.read { max-width: 66ch; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+h1 { font-size: var(--text-2xl); line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
+h2 { font-size: var(--text-xl); line-height: 1.2; letter-spacing: -0.02em; font-weight: 700; }
+h3 { font-size: var(--text-lg); line-height: 1.35; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--accent); }
+.label {
+  font-size: var(--text-sm); font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--accent);
+}
+.muted { color: var(--ink-2); }
+.small { font-size: var(--text-sm); }
+section { display: flex; flex-direction: column; gap: var(--g3); }
+.head { display: flex; flex-direction: column; gap: var(--g1); }
+
+/* Hero */
+.hero { display: flex; flex-direction: column; gap: var(--g2); padding-bottom: var(--g4); border-bottom: 1px solid var(--line); }
+.hero .lead { font-size: var(--text-lg); line-height: 1.45; color: var(--ink-2); max-width: 60ch; }
+.byline { display: flex; flex-wrap: wrap; gap: var(--g1) var(--g3); font-size: var(--text-sm); color: var(--ink-2); }
+.byline b { color: var(--ink); font-weight: 600; }
+
+/* Questions */
+.questions {
+  background: var(--accent-soft); border-radius: var(--radius-lg); padding: var(--pad-card);
+  display: flex; flex-direction: column; gap: var(--g3);
+}
+.qgroups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--g3) var(--g4); }
+@media (max-width: 900px) { .qgroups { grid-template-columns: 1fr; } }
+.qgroup { display: flex; flex-direction: column; gap: var(--g2); min-width: 0; }
+.qgroup h3 { font-size: var(--text-base); font-family: var(--font-body); font-weight: 600; padding-bottom: var(--g1); border-bottom: 1px solid var(--line); }
+.qgroup ol { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--g2); counter-reset: none; }
+.qgroup li { display: grid; grid-template-columns: 24px 1fr; gap: 4px; }
+.qgroup li .n { font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+.qgroup li p { min-width: 0; }
+
+/* Snapshot */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--g2); }
+.stat { background: var(--surface); border-radius: var(--radius-lg); padding: var(--g3); display: flex; flex-direction: column; gap: 4px; }
+.stat b { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.stat span { font-size: var(--text-sm); color: var(--ink-2); }
+.ticks { display: flex; flex-direction: column; gap: var(--g1); padding: 0; margin: 0; list-style: none; }
+.ticks li { padding-left: 22px; position: relative; }
+.ticks li::before { content: "\2713"; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
+
+/* Findings */
+.findings { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--g2) var(--g4);
+  padding-block: var(--g3); border-bottom: 1px solid var(--line);
+}
+.row > div { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.row h3 { font-size: var(--text-base); font-weight: 600; font-family: var(--font-body); }
+.fix-tag { font-size: var(--text-sm); font-weight: 600; color: var(--accent); }
+@media (max-width: 640px) { .row { grid-template-columns: 1fr; } }
+
+/* Ideas */
+.ideas { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--g3) var(--g4); }
+.idea { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.idea h3 { font-size: var(--text-base); font-family: var(--font-body); font-weight: 600; }
+.flow {
+  background: var(--surface); border-radius: var(--radius-lg); padding: var(--pad-card);
+  display: flex; flex-direction: column; gap: var(--g2);
+}
+.chips { display: flex; flex-wrap: wrap; gap: var(--g1); padding: 0; margin: 0; list-style: none; }
+.chips li {
+  font-size: var(--text-sm); font-weight: 600; padding: 6px 12px; border-radius: 9999px;
+  border: 1px solid var(--line); background: var(--card);
+}
+
+/* Options */
+.tiers { display: grid; grid-template-columns: 1fr; gap: var(--g2); align-items: start; }
+@media (min-width: 700px) { .tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tier {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-raised); padding: var(--pad-card);
+  display: flex; flex-direction: column; gap: var(--g2); min-width: 0;
+}
+.style { font-size: var(--text-sm); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-2); }
+.price { font-family: var(--font-display); font-size: var(--text-2xl); line-height: 1.1; font-weight: 700; font-variant-numeric: tabular-nums; }
+.price .about { display: block; font-family: var(--font-body); font-size: var(--text-sm); font-weight: 400; color: var(--ink-2); margin-bottom: 2px; }
+.price small { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 400; color: var(--ink-2); }
+.fit { font-size: 15px; border-left: 3px solid var(--accent); padding-left: var(--g2); }
+.tier ul, .night ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.tier ul { border-top: 1px solid var(--line); padding-top: var(--g2); }
+.tier li, .night li { padding-left: 20px; position: relative; font-size: 15px; }
+.tier li::before, .night li::before { content: "\2022"; position: absolute; left: 6px; color: var(--accent); font-weight: 700; }
+.tier li.plus { color: var(--ink-2); font-size: var(--text-sm); padding-left: 0; }
+.tier li.plus::before { content: none; }
+
+/* Evening coverage */
+.evening {
+  background: var(--surface); border-radius: var(--radius-lg); padding: var(--pad-card);
+  display: flex; flex-direction: column; gap: var(--g3);
+}
+.nights { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--g2); }
+@media (max-width: 560px) { .nights { grid-template-columns: 1fr; } }
+.night {
+  background: var(--card); border-radius: var(--radius-lg); padding: var(--pad-card);
+  display: flex; flex-direction: column; gap: var(--g2); min-width: 0; box-shadow: var(--shadow-raised);
+}
+.night .top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--g1); flex-wrap: wrap; }
+.night h3 { font-size: var(--text-lg); }
+.night .amt { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; font-variant-numeric: tabular-nums; }
+.night .amt span { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 400; color: var(--ink-2); }
+
+.addons { width: 100%; border-collapse: collapse; font-size: 15px; }
+.table-wrap { overflow-x: auto; }
+.addons th, .addons td { text-align: left; padding: 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.addons th { font-size: var(--text-sm); font-weight: 600; color: var(--ink-2); }
+.addons td.amt { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; padding-left: var(--g3); }
+.addons td span { display: block; font-size: var(--text-sm); color: var(--ink-2); }
+
+.terms { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--g1) var(--g4); padding: 0; margin: 0; list-style: none; }
+.terms li { padding-left: 22px; position: relative; }
+.terms li::before { content: "\2713"; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
+
+/* Close */
+.close { border-top: 1px solid var(--line); padding-top: var(--g4); display: flex; flex-direction: column; gap: var(--g2); }
+.contact { display: flex; flex-wrap: wrap; gap: var(--g1) var(--g4); font-size: var(--text-base); }
+.contact b { font-weight: 600; }
+.contact span { user-select: all; -webkit-user-select: all; }
+.src { font-size: var(--text-sm); color: var(--ink-2); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="label">Social media proposal for Luma Society</p>
+    <h1>Let's share Luma's story, one great night at a time.</h1>
+    <p class="lead">Hi, I'm Ava! I'm a communications grad from the University of Tampa, and I love this city. Luma already has the hard part down: amazing dinners, great partners and gorgeous video. I'd love to hear what you want from social media first. Then I'll share what I noticed and a few ideas.</p>
+    <div class="byline">
+      <span><b>Ava Brekhus</b></span>
+      <span>Tampa, FL</span>
+      <span>November 24, 2026</span>
+    </div>
+  </header>
+
+  <section class="questions">
+    <div class="head">
+      <p class="label">Let's start with you</p>
+      <h2>A few questions so I can build the right fit</h2>
+      <p class="muted read">Your answers help me figure out what to focus on, how often to post, and which option makes the most sense for you.</p>
+    </div>
+    <div class="qgroups">
+      <div class="qgroup">
+        <h3>The goal</h3>
+        <ol>
+          <li><span class="n">1</span><p>A year from now, what would make you say, "Yes, this is working"?</p></li>
+          <li><span class="n">2</span><p>What matters most right now? New members, showing what Luma does for Tampa Bay, more love for your sponsors, or giving members something they're proud to share?</p></li>
+          <li><span class="n">3</span><p>How many members do you have today, and how fast would you like to get to 100?</p></li>
+        </ol>
+      </div>
+      <div class="qgroup">
+        <h3>Who we're talking to</h3>
+        <ol>
+          <li><span class="n">4</span><p>Who do you most want to reach? Future members, sponsors, nonprofit partners, or Tampa's business community?</p></li>
+          <li><span class="n">5</span><p>Should we focus on Instagram, or would LinkedIn help too?</p></li>
+          <li><span class="n">6</span><p>How much of your nights are members comfortable sharing? Is anyone or anything off camera?</p></li>
+        </ol>
+      </div>
+      <div class="qgroup">
+        <h3>Working together</h3>
+        <ol>
+          <li><span class="n">7</span><p>How hands-on do you want to be? Would you like to see every post before it goes up, or should I just run with it?</p></li>
+          <li><span class="n">8</span><p>What's coming up in the next six months? Dinners, trips, the next gala?</p></li>
+          <li><span class="n">9</span><p>Will your video team keep filming? I'd love to use their footage.</p></li>
+          <li><span class="n">10</span><p>Do you have a monthly budget in mind?</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <p class="label">Where things are now</p>
+      <h2>A great start, posting about twice a month</h2>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>206</b><span>Instagram followers</span></div>
+      <div class="stat"><b>11</b><span>Posts since June 26</span></div>
+      <div class="stat"><b>3 weeks</b><span>Between recent posts</span></div>
+      <div class="stat"><b>Nov 11</b><span>Most recent post</span></div>
+    </div>
+    <p class="small muted">From the public @thelumasociety page on November 24, 2026.</p>
+    <ul class="ticks">
+      <li>Your event reels look amazing, really polished and cinematic.</li>
+      <li>The collabs with chefs and MAISON are already getting Luma in front of new people.</li>
+      <li>Your website sounds clear and confident: friendship first, and Tampa Bay for the next 30 years.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="head">
+      <p class="label">What I noticed</p>
+      <h2>Six things I'd love to fix</h2>
+    </div>
+    <div class="findings">
+      <div class="row">
+        <div><h3>It's hard to find you on Instagram</h3><p class="muted">Your website doesn't link to your Instagram, and if you search "lumasociety" you land on someone else's personal account.</p></div>
+        <div><span class="fix-tag">What I'd do</span><p>Add your Instagram to the website, and send your bio link straight to the application.</p></div>
+      </div>
+      <div class="row">
+        <div><h3>The photos say "dinner club"</h3><p class="muted">Your website says Luma is so much more than dinner, but a lot of the photos are food and wine. The membership gallery has no people in it, and the testimonials don't have names.</p></div>
+        <div><span class="fix-tag">What I'd do</span><p>Show the friendships! Candid moments at the table, the track day, trips, and members (the ones who want to be!) sharing why they joined.</p></div>
+      </div>
+      <div class="row">
+        <div><h3>Long quiet stretches</h3><p class="muted">Lately there's been about three weeks between posts. Instagram shows your posts to more people when you post on a steady schedule.</p></div>
+        <div><span class="fix-tag">What I'd do</span><p>A weekly posting schedule, planned a month ahead.</p></div>
+      </div>
+      <div class="row">
+        <div><h3>Some questions go unanswered</h3><p class="muted">A question on your latest reel has been waiting three days for a reply. People notice when questions about who can join don't get answered.</p></div>
+        <div><span class="fix-tag">What I'd do</span><p>Reply to comments and messages within one business day, so nobody is left waiting.</p></div>
+      </div>
+      <div class="row">
+        <div><h3>Your best stories aren't out there yet</h3><p class="muted">Your members serve on boards at St. Jude, AdventHealth Foundation, 13 Ugly Men, BayCare and St. Joseph's, and six companies sponsored the 2026 Gala. I didn't see either of those on your feed.</p></div>
+        <div><span class="fix-tag">What I'd do</span><p>Regular posts about the good work members do, plus a thank-you shoutout for each sponsor.</p></div>
+      </div>
+      <div class="row">
+        <div><h3>Highlights are sorted by month</h3><p class="muted">Highlights like "SEPT '26" and "OCT '26" get old fast and don't tell someone new what Luma is.</p></div>
+        <div><span class="fix-tag">What I'd do</span><p>Highlights that last: About, Membership, Philanthropy, Gala and How to Apply.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <p class="label">Bigger ideas</p>
+      <h2>More members and sponsors, not just more followers</h2>
+    </div>
+    <div class="flow">
+      <h3>One night out turns into a whole week of posts</h3>
+      <ul class="chips">
+        <li>Event reel</li><li>Photo carousel</li><li>Chef or venue collab</li><li>Member quote</li><li>Live stories</li><li>LinkedIn recap</li>
+      </ul>
+      <p class="small muted">Your video team already films the night. I'd turn that footage, plus my own photos and clips, into five or six posts instead of just one.</p>
+    </div>
+    <div class="ideas">
+      <div class="idea"><h3>Team up with every partner</h3><p class="muted">When we post with a chef, venue or sponsor, their followers see Luma too. MAISON alone has 21.5K followers!</p></div>
+      <div class="idea"><h3>Make sponsors want to come back</h3><p class="muted">When sponsors see real views on their shoutouts, signing them up for the next gala gets a lot easier.</p></div>
+      <div class="idea"><h3>Start a LinkedIn page</h3><p class="muted">I couldn't find one. It's where founders and investors spend their workday, and members can share posts with their own networks.</p></div>
+      <div class="idea"><h3>Track what really matters</h3><p class="muted">A simple monthly report: how many people saw your posts, visited your page, and clicked through to apply.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <p class="label">Ways we could do this</p>
+      <h2>A few options to give you an idea of cost</h2>
+      <p class="muted read">These are just examples to give you a feel for pricing. Once I know your goals, I'll build something that fits you, and the price goes up or down with the number of posts and events. A "post" is one finished reel, photo carousel or photo, with a caption and tags.</p>
+    </div>
+    <div class="tiers">
+      <article class="tier">
+        <p class="style">Starter style</p>
+        <p class="price"><span class="about">Around</span>$750 <small>a month</small></p>
+        <p class="fit">Great if you want a steady, polished presence with a couple of posts a week.</p>
+        <ul>
+          <li>About 6 posts a month</li>
+          <li>A monthly content calendar</li>
+          <li>Captions, tags and collabs</li>
+          <li>Replying to comments and messages on posting days</li>
+          <li class="plus">Made from footage you already have, like your video team's reels</li>
+        </ul>
+      </article>
+      <article class="tier">
+        <p class="style">Growth style</p>
+        <p class="price"><span class="about">Around</span>$1,700 <small>a month</small></p>
+        <p class="fit">Great if bringing in new members and sponsors is the goal and you'd like me at an event each month.</p>
+        <ul>
+          <li>About 10 posts a month</li>
+          <li>I'll come to 1 event a month (up to 3 hours) for photos, video and live stories</li>
+          <li>Replies every business day</li>
+          <li>Highlights kept fresh</li>
+          <li>A simple monthly report</li>
+          <li class="plus">Everything in Starter style</li>
+        </ul>
+      </article>
+      <article class="tier">
+        <p class="style">Signature style</p>
+        <p class="price"><span class="about">Around</span>$2,750 <small>a month</small></p>
+        <p class="fit">Great if you want Luma known all over Tampa Bay's business community, on Instagram and LinkedIn.</p>
+        <ul>
+          <li>About 16 posts a month</li>
+          <li>I'll come to 2 events a month</li>
+          <li>A LinkedIn page, set up and run (about 4 posts a month)</li>
+          <li>Member and sponsor spotlights</li>
+          <li>A planning session every 3 months</li>
+          <li class="plus">Everything in Growth style</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="evening">
+    <div class="head">
+      <p class="label">For your big nights</p>
+      <h2>Want a night captured? Call me!</h2>
+      <p class="muted read">Having a dinner, happy hour or big event you want to remember? I'll be there. You can book this on its own or add it to any option above.</p>
+    </div>
+    <div class="nights">
+      <article class="night">
+        <div class="top"><h3>1 hour at the event</h3><p class="amt"><span>Around </span>$250</p></div>
+        <ul>
+          <li>Live stories during the event</li>
+          <li>1 finished post (a reel or photo carousel)</li>
+          <li>Edited photos sent to you within 48 hours</li>
+        </ul>
+      </article>
+      <article class="night">
+        <div class="top"><h3>2 hours at the event</h3><p class="amt"><span>Around </span>$400</p></div>
+        <ul>
+          <li>Live stories during the event</li>
+          <li>2 finished posts, like a reel and a carousel</li>
+          <li>Edited photos sent to you within 48 hours</li>
+        </ul>
+      </article>
+    </div>
+    <p class="small muted">Want more from the night? Extra posts are $100 each. Galas, retreats and trips get their own quote.</p>
+  </section>
+
+  <section>
+    <div class="table-wrap">
+      <table class="addons">
+        <thead><tr><th>Other extras</th><th style="text-align:right">Price</th></tr></thead>
+        <tbody>
+          <tr><td>Getting started<span>I'll refresh your bio and highlights, fix the website links, write replies for common questions, and plan your first month. Free if you start with 3 months.</span></td><td class="amt">$400 one time</td></tr>
+          <tr><td>Extra post<span>Add to any option.</span></td><td class="amt">$100 each</td></tr>
+          <tr><td>A single post, without a monthly option</td><td class="amt">$150 each</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <p class="label">How I work</p>
+      <h2>Your privacy and your accounts come first</h2>
+    </div>
+    <ul class="terms">
+      <li>Members who'd rather stay private are never shown. Spotlights are always opt-in.</li>
+      <li>Luma owns the accounts and every photo and video.</li>
+      <li>I'd get access through Meta's business tools, so nobody has to share a password.</li>
+      <li>I'm local, so I can be at your events in person.</li>
+      <li>Billed at the start of each month. After the first 3 months, you can change or cancel with 30 days' notice.</li>
+      <li>Want something changed? Two rounds of edits are included on every post.</li>
+    </ul>
+  </section>
+
+  <footer class="close">
+    <h2>What's next</h2>
+    <p class="read">Tell me what you want social media to do for Luma, and I'll put together an option made just for you. We can always adjust from there. I'm so excited about what you're building, and I'd love to help share it!</p>
+    <div class="contact">
+      <b>Ava Brekhus</b>
+      <span>(952) 239-4693</span>
+      <span>abreks@gmail.com</span>
+      <a href="https://www.instagram.com/avabrekhus/" target="_blank" rel="noopener">@avabrekhus</a>
+    </div>
+    <p class="src">Based on lumasociety.com and @thelumasociety, as of November 24, 2026.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
